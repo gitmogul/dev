@@ -1,0 +1,32 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+//
+//
+///////////////////////////////////////////////////////////////////////////////
+#include <linux/kernel.h>
+#include <linux/module.h>
+
+ 
+//////////////////////////////////////////////////////////////////////////////
+static int __init init_timer_module( void )
+{
+    int ret = 0;
+
+    pr_info( "%s\n", __FUNCTION__ );
+    pr_info ("KE PASA MANG !!!\n" );
+ 
+    return ret;
+}
+ 
+
+//////////////////////////////////////////////////////////////////////////////
+static void __exit exit_timer_module( void )
+{
+    pr_info( "%s\n", __FUNCTION__ );
+    pr_info ("ADIOS MANG !!!\n" );
+    return;
+}
+
+module_init( init_timer_module );
+module_exit( exit_timer_module );
+MODULE_LICENSE("GPL");
