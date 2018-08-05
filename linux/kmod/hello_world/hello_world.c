@@ -6,6 +6,12 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 
+
+//////////////////////////////////////////////////////////////////////////////
+#define AUTHOR      "gitmogul"
+#define DESCRIPTION "Hello world example"
+#define VERSION     "1.0"
+
  
 //////////////////////////////////////////////////////////////////////////////
 static int __init init_timer_module( void )
@@ -27,6 +33,13 @@ static void __exit exit_timer_module( void )
     return;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 module_init( init_timer_module );
 module_exit( exit_timer_module );
+
 MODULE_LICENSE("GPL");
+MODULE_AUTHOR(AUTHOR);
+MODULE_DESCRIPTION(DESCRIPTION);
+MODULE_VERSION(VERSION);
+///////////////////////////////////////////////////////////////////////////////
+
