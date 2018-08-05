@@ -6,8 +6,15 @@
 //
 // To see the value of PRINT_COUNT after the driver is inserted
 // sudo cat /sys/modules/hello_world/parameters/PRINT_COUNT
+//
 // To change it after the module is inserted...
 // echo -n "10" > /sys.modules/hello_word/parameters/PRINT_COUNT 
+//
+// To see the version of the app 
+// cat /sys/module/hello_world/version
+//
+// to show all information on the module run the command
+// modinfo hello_world.ko
 //
 ///////////////////////////////////////////////////////////////////////////////
 #include <linux/kernel.h>
@@ -25,8 +32,13 @@ char* GREETING_STRING = NULL;
 char* GOODBYE_STRING  = NULL;
 
 module_param( PRINT_COUNT, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+MODULE_PARM_DESC( PRINT_COUNT, "# times printed when module inserted/removed" );
+
 module_param( GREETING_STRING, charp, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+MODULE_PARM_DESC( GREETING_STRING, "String printed when module is inserted" );
+
 module_param( GOODBYE_STRING, charp, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+MODULE_PARM_DESC( GOODBYE_STRING, "String printed when module is removed" );
  
 //////////////////////////////////////////////////////////////////////////////
 static int __init init_hello_world( void )
