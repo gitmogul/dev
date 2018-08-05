@@ -21,7 +21,12 @@
 #define VERSION     "1.0"
 
 int PRINT_COUNT = 1;
+char* GREETING_STRING = NULL;
+char* GOODBYE_STRING  = NULL;
+
 module_param( PRINT_COUNT, int, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+module_param( GREETING_STRING, charp, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
+module_param( GOODBYE_STRING, charp, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
  
 //////////////////////////////////////////////////////////////////////////////
 static int __init init_hello_world( void )
@@ -31,7 +36,9 @@ static int __init init_hello_world( void )
 
     pr_info( "%s\n", __FUNCTION__ );
     for( count = 0; count < PRINT_COUNT; count++ ) {
-        pr_info( "%s\n", "KE PASA MANG !!!" );
+        pr_info( "%s\n", (GREETING_STRING == NULL)? 
+                            "KE PASA MANG !!!":
+                            GREETING_STRING );
     }
  
     return ret;
@@ -45,7 +52,9 @@ static void __exit exit_hello_world( void )
 
     pr_info( "%s\n", __FUNCTION__ );
     for( count = 0; count < PRINT_COUNT; count++ ) {
-        pr_info( "ADIOS MANG !!!\n" );
+         pr_info( "%s\n", (GOODBYE_STRING == NULL)? 
+                            "ADIOS MANG !!!":
+                            GOODBYE_STRING );
     }
     return;
 }
